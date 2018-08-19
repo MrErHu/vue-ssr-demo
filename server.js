@@ -15,14 +15,17 @@ const renderer = createBundleRenderer(bundle, {
     clientManifest
 })
 
-
 app.get('*', (req, res) => {
-    renderer.renderToString({}, function (err, html) {
-        res.end(html);
-    });
+
+    const context = {
+        url: req.url
+    }
+
+    renderer.renderToString(context, function (err, html) {
+        res.end(html)
+    })
 })
 
 app.listen(8080, function () {
     console.log("server start and listen port 8080")
 })
-
