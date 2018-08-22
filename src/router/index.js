@@ -7,11 +7,11 @@ export function createRouter() {
     return new Router({
         mode: "history",
         routes: [{
-            path: '/',
-            component: () => import('../components/Home.vue')
-        }, {
-            path: "/about",
-            component: () => import('../components/About.vue')
+            path: '/good',
+            component: () => import('../components/TopicListCopy.vue')
+        },{
+            path: '/:id',
+            component: () => import('../components/TopicList.vue')
         }]
     })
 }

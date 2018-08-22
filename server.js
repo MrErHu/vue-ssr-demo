@@ -9,6 +9,7 @@ const clientManifest = require('./dist/vue-ssr-client-manifest.json')
 
 const app = express();
 app.use("/dist", express.static("dist"))
+app.use("/public", express.static("public"))
 
 const renderer = createBundleRenderer(bundle, {
     template,
@@ -19,6 +20,10 @@ app.get('*', (req, res) => {
 
     const context = {
         url: req.url
+    }
+
+    if(req.url === "/favicon.ico"){
+        res.end();
     }
 
     renderer.renderToString(context, function (err, html) {
